@@ -1,0 +1,162 @@
+﻿<Window
+    x:Class="AtlasConverter.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AtlasConverter"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Arpasing RUS Helper"
+    Width="800"
+    Height="400"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border BorderBrush="{DynamicResource BackgroundBrush}" BorderThickness="5">
+        <Grid Background="{DynamicResource BackgroundBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600*" />
+                <ColumnDefinition Width="160" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="236*" MinHeight="150" />
+                <RowDefinition Height="120" />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer
+                Name="ScrollViewer"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="3"
+                Padding="0,0,0,2"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                CanContentScroll="True"
+                MouseWheel="ScrollViewer_MouseWheel"
+                PreviewMouseWheel="ScrollViewer_MouseWheel"
+                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                Template="{DynamicResource ScrollViewerControlTemplate}">
+                <Grid>
+                    <Canvas
+                        Name="RootCanvas"
+                        Grid.Row="2"
+                        Width="12300"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{DynamicResource TextBoxBrush}">
+                        <Canvas Name="GridCanvas" Height="40">
+                            <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" />
+                        </Canvas>
+                        <Canvas Name="NotesCanvas" Height="40">
+                            <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" />
+                        </Canvas>
+                        <Canvas Name="AliasesCanvas" />
+                    </Canvas>
+                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" />
+                </Grid>
+            </ScrollViewer>
+            <Menu
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Margin="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1">
+                <MenuItem Foreground="{DynamicResource ForeBrush}" Header="Preferences" />
+                <MenuItem Foreground="{DynamicResource ForeBrush}" Header="Help" />
+            </Menu>
+            <TextBox
+                Name="LyricWindow"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="3"
+                AcceptsReturn="True"
+                Background="{DynamicResource TextBoxBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                Foreground="{DynamicResource ForeBrush}"
+                IsTabStop="False"
+                SelectionBrush="{DynamicResource SelectionBrush}" />
+
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="3"
+                VerticalAlignment="Bottom">
+
+                <Button
+                    Name="ChangeColorMap"
+                    Margin="0,0,0,3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="ChangeColorMap_Click"
+                    Content="Edit Color Map"
+                    Style="{DynamicResource ButtonStyle}" />
+                <Button
+                    Name="ChangeSingerButton"
+                    Margin="0,3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="ChangeSingerButton_Click"
+                    Content="Change Singer"
+                    Style="{DynamicResource ButtonStyle}" />
+                <CheckBox
+                    Name="MakeEnds"
+                    Margin="0,3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource ButtonBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    Content="Make Ends"
+                    Foreground="{DynamicResource ForeBrush}"
+                    IsChecked="True" />
+                <TextBox
+                    Name="NewLengthDefault"
+                    Margin="0,3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Bottom"
+                    Background="{DynamicResource TextBoxBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    DataContext="{Binding}"
+                    Foreground="{DynamicResource ForeBrush}"
+                    Text="9999"
+                    TextChanged="NewLengthDefault_TextChanged"
+                    ToolTip="Default new note length" />
+                <Button
+                    Name="ConvertButton"
+                    Margin="0,3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="ConvertButton_Click"
+                    Content="Convert"
+                    Style="{DynamicResource ButtonStyle}" />
+                <Button
+                    Name="OkButton"
+                    Margin="0,3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="OkButton_Click"
+                    Content="OK"
+                    Style="{DynamicResource ButtonStyle}" />
+                <Button
+                    Name="CancelButton"
+                    Margin="0,3,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="CancelButton_Click"
+                    Content="Cancel"
+                    Style="{DynamicResource ButtonStyle}" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

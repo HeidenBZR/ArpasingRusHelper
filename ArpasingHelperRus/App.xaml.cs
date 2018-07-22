@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using AtlasConverter.Classes;
 
 namespace AtlasConverter
 {
@@ -13,5 +14,15 @@ namespace AtlasConverter
     /// </summary>
     public partial class App : Application
     {
+        public static Core Core;
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            if (e.Args.Length > 0)
+            {
+                Core = new Core(e.Args[0]);
+            }
+        }
+
     }
 }
